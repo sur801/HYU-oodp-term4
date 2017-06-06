@@ -1,12 +1,16 @@
     @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
-
-    body {
-      padding-top: 20px;
-      padding-bottom: 40px;
-      background-image: url('../img/bak.jpeg');
-      background-repeat: no-repeat;
-      background-size: 100% 100%;
+    html {
+      padding: 0px;
       
+    }
+    body {
+      height: 100%;
+      opacity : 1;
+      padding-top: 60px;
+      background-image: url('../img/bak.jpeg');
+      background-size: 80% 70%;
+      background-color: rgba( 255, 255, 255, 0.0 );
+
     }
 
     .floating {
@@ -14,7 +18,8 @@
       position: fixed; 
       right: 50%; 
       top: 180px; 
-      margin-right: -570px;
+      float: right;
+      margin-right: -45%;
       text-align:center;
       width:100px;
       -webkit-border-radius: 8px;
@@ -35,6 +40,15 @@
      border:3px solid #ffffff;
      border-radius: 50px;
    }
+   .floating div:nth-child(3){
+     width: 100%;
+     height: 100%;
+     padding: 10px;
+     margin-bottom: 30px;
+     border:3px solid #ffffff;
+     border-radius: 50px;
+   }
+
 
 
 
@@ -50,6 +64,7 @@
 
   /* 핵심 마케팅 문구와 가입 버튼 */
   .jumbotron {
+    background-color: rgba( 255, 255, 255, 0.3 );
     margin: 60px 0;
     text-align: center;
     border-style: solid 10px;
@@ -64,4 +79,24 @@
     padding: 14px 24px;
   }
   .glyphicon { margin-right:5px; }
+
+  .thumbnail span{
+    font-size: 130px; 
+    margin-bottom:5px; 
+    color : #ffffff; 
+    background-color : #000000;
+    width:100%
+  }
+
+  .thumbnail .caption span{
+
+    cursor: pointer;
+    font-size:20px; 
+    background-color: #ffffff; 
+    color : #000000; 
+    width : 20px
+
+  }
+
+
   
