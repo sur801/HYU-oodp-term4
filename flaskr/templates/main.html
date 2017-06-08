@@ -60,41 +60,34 @@
           <div class="container">
             <div id="products" class="row list-group">
 
-            {% block body %}
+            {% for p in person %}
 
-            {% endblock %}
-
-            </div>
-          </div>
-
-          <div class="container">
-            <div id="products" class="row list-group">
               <div class="item  col-xs-4 col-lg-4">
                 <div class="thumbnail">
                   <span class="glyphicon glyphicon-user" aria-hidden="true"> </span>
 
                   <div class="caption" style="padding : 0px">
-                    <h4 class="group inner list-group-item-heading">Name</h4>
+                    <h4 class="group inner list-group-item-heading">{{ p[1] }}</h4>
                     <p class="group inner list-group-item-text">
-                      phone number :
+                      phone number : <br>
+                      {{ p[2] }}
                     </p>
                     <p class="group inner list-group-item-text" style="margin : 0px">
-                      email :
+                      email : <br>
+                      {{ p[3] }}
                     </p>
                     <p style="margin:0px">
-                      <span class="glyphicon glyphicon-earphone" aria-hidden="true" style="margin-right:150px"></span>
+                      <span class="glyphicon glyphicon-earphone" aria-hidden="true" style="margin-right:150px" onclick="asking();"></span>
                       <span class="glyphicon glyphicon-envelope" aria-hidden="true" onclick="asking();"></span>
                     </p>
                   </div>
+
                 </div>
               </div>
 
-
-
+              {% endfor %}
 
             </div>
-
-
           </div>
 
 

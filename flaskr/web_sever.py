@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def main(name=None):
-    return render_template('person.html', name=name, person=getPerson())
+    return render_template('main.html', name=name, person=getPerson())
 
 @app.route('/call_hist')
 def call_hist():
