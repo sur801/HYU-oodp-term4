@@ -7,13 +7,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
- <!-- 스타일 -->
+   <!-- 스타일 -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
- <!-- IE6~8에서 HTML5 태그를 지원하기위한 HTML5 shim -->
-    <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
-      <![endif]-->
+
+
+  <!-- javascript -->
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/main.js')}}"></script>
     
@@ -29,7 +28,7 @@
           <p>  <span class="glyphicon glyphicon-earphone" aria-hidden="true" style=" font-size: 30px;color : #ffffff"> Call</span></p>
 
         </div>
-        <div>
+        <div> 
           <p>  <span class="glyphicon glyphicon-plus" aria-hidden="true" style=" font-size: 30px;color : #ffffff" > Add</span></p>
           
           
@@ -40,7 +39,7 @@
 
         <div class="masthead">
           <ul class="nav nav-pills pull-right">
-            <li class="active"><a href="#">연락처</a></li>
+            <li><a href="#">연락처</a></li>
             <li><a href="{{ url_for('call_hist')}}">통화기록</a></li>
             <li><a href="#">문자기록</a></li>
           </ul>
