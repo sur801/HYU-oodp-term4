@@ -11,6 +11,23 @@
 
      <a href = "#" class = "list-group-item">
         Number : {{ c[1] }} <br>
+
+        {% if c[2] == 0 %}
+        <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+        <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+        {% endif %}
+
+        {% if c[2] == 1 %}
+        <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+        <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
+        {% endif %}
+
+        {% if c[2] == 2 %}
+        <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+        <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+        {% endif %}
+
+
         Duration : {{ c[3]}}
     </a>
 
