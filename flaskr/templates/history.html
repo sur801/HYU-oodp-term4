@@ -31,11 +31,11 @@
 
         <div class="masthead">
           <ul class="nav nav-pills pull-right">
-            <li class="active"><a href="{{ url_for('main')}}">연락처</a></li>
-            <li><a href="#">통화기록</a></li>
-            <li><a href="#">문자기록</a></li>
+            <li><a href="{{ url_for('main')}}">연락처</a></li>
+            <li><a href="{{ url_for('call_hist')}}">통화기록</a></li>
+            <li><a href="{{ url_for('sms_hist')}}">문자기록</a></li>
           </ul>
-          <h3 class="muted" style= "color : #ffffff">Termp 4</h3>
+          <h1 class="muted" style= "color : #ffffff">Termp 4</h3>
         </div>
 
         <hr>
@@ -45,6 +45,7 @@
 
           {% endblock %}
 
+          
         </div>
 
         </div>
