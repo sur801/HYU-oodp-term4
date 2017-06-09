@@ -4,14 +4,14 @@
 <div class="bs-example">
     <div class="list-group">
         <a href = "#" class = "list-group-item active">
-         Call History
+         Text Messages
      </a>
 
-     {% for c in call %}
+     {% for s in sms %}
 
      <a href = "#" class = "list-group-item">
-        Number : {{ c[1] }} <br>
-        Duration : {{ c[3]}}
+        Number : {{ s[1] }} <br>
+        Content : {{ c[3]}}
     </a>
 
     {% endfor %}
