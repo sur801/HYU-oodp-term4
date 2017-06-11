@@ -4,7 +4,8 @@
 }
 
 #add_page span{
-	font-size: 250px
+	font-size: 230px;
+    padding-top:20px;
 }
 
 #add_page input{
@@ -18,6 +19,14 @@
 #add_page h4{
 	color: #222222;
 	font-weight: bold;
+}
+#add_page {
+    width: 70%;
+    height:80%;
+    margin: 0 auto;
+    padding:0;
+    background-color: #ffffff;
+    border-radius: 10px;
 }
 
 input#save{

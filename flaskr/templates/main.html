@@ -28,7 +28,7 @@
           <p><span class="glyphicon glyphicon-envelope" aria-hidden="true" style="font-size: 30px ;color : #ffffff"> MSG</span></p>
         </div>
         <div>
-          <p>  <span class="glyphicon glyphicon-earphone" aria-hidden="true" style=" font-size: 30px;color : #ffffff"> Call</span></p>
+          <p> <a href="{{ url_for('searchResult')}}">  <span class="glyphicon glyphicon-earphone" aria-hidden="true" style=" font-size: 30px;color : #ffffff"> Call</span></a></p>
 
         </div>
         <div> 
@@ -52,7 +52,7 @@
         <hr>
 
         <div class="jumbotron">
-          <form action="POST" style="margin : -7px 0px 30px 0px">
+          <form action = "{{ url_for('main') }}" method="POST" style="margin : -7px 0px 30px 0px">
             <span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size: 30px ;"> </span>
             <input type="text" name="keyword" size="60" placeholder="검색어를 입력하시오" style="padding:2px;">
             <input type="submit" name="send" value="검색" id = "search" >
@@ -63,7 +63,7 @@
             <div id="products" class="row list-group">
 
             {% for p in person %}
-            <form action='{{request.path}}' method='POST'>
+            <form action='{{request.path}}' method='POST'">
               <div class="item  col-xs-4 col-lg-4" style="margin-bottom:10px">
                 <div class="thumbnail">
                   <span class="glyphicon glyphicon-user" aria-hidden="true"> </span>
@@ -73,6 +73,7 @@
                     <p class="group inner list-group-item-text">
                       <label for number>phone number : <br>
                       {{ p[2] }}
+
                       </label>
                     </p>
                     <p class="group inner list-group-item-text" style="margin : 0px">
@@ -81,10 +82,10 @@
                     </p>
 
                     <p id="side_menu" style="margin:0px">
-                      <span class="glyphicon glyphicon-earphone" aria-hidden="true" style="margin-right:27px" onclick="asking();"></span>
-                      <span class="glyphicon glyphicon-envelope" aria-hidden="true" style="margin-right:27px" onclick="asking();"></span>
-                      <span class="glyphicon glyphicon-pencil" aria-hidden="true" style="margin-right:27px" onclick="asking();"></span>
-                      <span class="glyphicon glyphicon-trash" aria-hidden="true" onclick="asking();"></span>
+                      <span class="glyphicon glyphicon-earphone" aria-hidden="true" style="margin-right:27px"></span>
+                      <span class="glyphicon glyphicon-envelope" aria-hidden="true" style="margin-right:27px"></span>
+                      <span class="glyphicon glyphicon-pencil" aria-hidden="true" style="margin-right:27px"></span>
+                      <span class="glyphicon glyphicon-trash" aria-hidden="true" onclick="asking({{(p[2])}})"></span>
                     </p>
                    
                   </div>
@@ -92,7 +93,7 @@
               </div>
             </form>
 
-              {% endfor %}
+            {% endfor %}
 
             </div>
           </div>

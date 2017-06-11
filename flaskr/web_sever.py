@@ -8,14 +8,22 @@ from sql_conn3 import getConnection, getPerson, getCall, getMsg, setPerson
 app = Flask(__name__)
 app.secret_key = 'secret'
 
-@app.route('/')
+@app.route('/', methods = ['POST','GET'])
 def main(name=None):
-	return render_template('main.html', name=name, person=getPerson())
+	if(request.method == 'POST'):
+		key = request.form['keyword']
+		return render_template('searchResult.html',s_person=searchPerson(key))
+	else:
+		return render_template('main.html', name=name, person=getPerson())
 
 
 @app.route('/call_hist')
 def call_hist():
 	return render_template('call_hist.html', call=getCall())
+
+@app.route('/searchResult')
+def searchResult():
+	return render_template('searchResult.html')
 	
 @app.route('/sms_hist')
 def sms_hist():

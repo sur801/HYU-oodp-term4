@@ -1,6 +1,7 @@
-function asking(){
+function asking(person){
+
 	if (confirm("실행할래?")== true){    //확인
-		data = {"phonenumber" : "1010"}
+		alert(person);
 	}else{   //취소
     	return;
 	}
