@@ -1,0 +1,36 @@
+{% extends "main.html" %}
+{% block body %}
+	{% for p in s_person %}
+            
+              <div class="item  col-xs-4 col-lg-4" style="margin-bottom:10px">
+                <div class="thumbnail">
+                  <span class="glyphicon glyphicon-user" aria-hidden="true"> </span>
+
+                  <div class="caption" style="padding:0px;"">
+                    <h4 class="group inner list-group-item-heading" style="font-weight:bold">{{ p[1] }}</h4>
+                    <p class="group inner list-group-item-text">
+                      <label for number>phone number : <br>
+                      {{ p[2] }}
+
+                      </label>
+                    </p>
+                    <p class="group inner list-group-item-text" style="margin : 0px">
+                      email : <br>
+                      {{ p[3] }}
+                    </p>
+
+                    <p id="side_menu" style="margin:0px">
+                      <span class="glyphicon glyphicon-earphone" aria-hidden="true" style="margin-right:27px"></span>
+                      <span class="glyphicon glyphicon-envelope" aria-hidden="true" style="margin-right:27px"></span>
+                      <span class="glyphicon glyphicon-pencil" aria-hidden="true" style="margin-right:27px"></span>
+                      <span class="glyphicon glyphicon-trash" aria-hidden="true" onclick="asking({{(p[2])}})"></span>
+                    </p>
+                   
+                  </div>
+                </div>
+              </div>
+
+
+    {% endfor %}
+
+{% endblock %}
