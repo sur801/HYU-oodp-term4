@@ -2,13 +2,6 @@ import sqlite3
 
 # Use 4 spaces as indent
 
-"""
-conn = sqlite3.connect('addressbook.db')
-
-conn.execute('CREATE TABLE addressbook (id INT UNSIGNED NOT NULL AUTO_INCREMENT, name TEXT, number TEXT, email TEXT')
-
-connn.close()
-"""
 
 def getConnection():
     return sqlite3.connect('addressbook.db')
@@ -41,14 +34,33 @@ def setPerson(name, number, email):
     conn.commit()
 
     conn.close()
+
 def searchPerson(key):
     conn = getConnection()
     curs = conn.cursor()
 
-    cur.execute("SELECT * FROM ADDRESSBOOK WHERE name LIKE '%y%'")
-    row = cur.fetchall()
+    curs.execute("SELECT * FROM ADDRESSBOOK WHERE name LIKE ?", ('%{}%'.format(key),))
+    row1 = curs.fetchall()
+
+    curs.execute("SELECT * FROM ADDRESSBOOK WHERE number LIKE ?", ('%{}%'.format(key),))
+    row2 = curs.fetchall()
+
+    curs.execute("SELECT * FROM ADDRESSBOOK WHERE email LIKE ?", ('%{}%'.format(key),))
+    row3 = curs.fetchall()
 
     conn.close()
+
+    return row1 + row2 + row3
+
+def searchName(num):
+    conn = getConnection()
+    curs = conn.cursor()
+
+    curs.execute("SELECT * FROM ADDRESSBOOK WHERE number=?", (num,))
+    row = curs.fetchall()
+
+    conn.close()
+
     return row
 
 def getCall():
