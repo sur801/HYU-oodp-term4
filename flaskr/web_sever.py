@@ -3,7 +3,7 @@ from flask import Flask, request, flash, redirect, url_for
 
 #from sql_connect import getPerson, getCall, getMsg
 import sqlite3
-from sql_conn3 import getConnection, getPerson, getCall, getMsg, setPerson
+from sql_conn3 import getConnection, getPerson, getCall, getMsg, setPerson, searchPerson
 
 app = Flask(__name__)
 app.secret_key = 'secret'
@@ -12,9 +12,10 @@ app.secret_key = 'secret'
 def main(name=None):
 	if(request.method == 'POST'):
 		key = request.form['keyword']
-		return render_template('searchResult.html',s_person=searchPerson(key))
-	else:
-		return render_template('main.html', name=name, person=getPerson())
+		return render_template('main.html', person=searchPerson(key))
+		#return render_template('searchResult.html',s_person=searchPerson(key))
+	
+	return render_template('main.html', name=name, person=getPerson())
 
 
 @app.route('/call_hist')

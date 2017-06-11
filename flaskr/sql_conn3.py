@@ -41,16 +41,24 @@ def setPerson(name, number, email):
     conn.commit()
 
     conn.close()
+
 def searchPerson(key):
     conn = getConnection()
     curs = conn.cursor()
 
-    cur.execute("SELECT * FROM ADDRESSBOOK WHERE name LIKE '%y%'")
-    row = cur.fetchall()
+    curs.execute("SELECT * FROM ADDRESSBOOK WHERE name LIKE ?", ('%{}%'.format(key),))
+    row = curs.fetchall()
 
     conn.close()
-    return row
 
+    return row
+"""
+def searchName(num):
+    conn = getConnection()
+    curs = conn.cursor()
+
+    curs.execute("SELECT * FROM ADDRESSBOOK WHERE number=?", (num,))
+"""
 def getCall():
     conn = getConnection()
 
