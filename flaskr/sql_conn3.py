@@ -20,7 +20,7 @@ def getPerson():
     curs = conn.cursor()
 
     # SQL문 실행
-    sql = "select * from addressbook"
+    sql = "SELECT * FROM addressbook ORDER BY name"
     curs.execute(sql)
 
     # 데이타 Fetch
@@ -31,6 +31,16 @@ def getPerson():
 
     return row
 
+
+def setPerson(name, number, email):
+    conn = getConnection()
+    curs = conn.cursor()
+
+    curs.execute("INSERT INTO ADDRESSBOOK VALUES(?, ?, ?, ?)", (None, name, number, email))
+
+    conn.commit()
+
+    conn.close()
 
 def getCall():
     conn = getConnection()

@@ -13,10 +13,14 @@
 
 <div class="jumbotron">
 
+	{% if error %}
+	<p><strong>Error : </strong> {{ error }}
+	{% endif %}
+
 	<div id="add_page">
  	   	<span class="glyphicon glyphicon-user" aria-hidden="true"> </span>
  	   	<div style="width:80%; margin:0 auto; ">
-			<form action="{{ url_for('add_entry') }}" method="POST">
+			<form action="{{ url_for('addPerson') }}" method="POST">
 				<br>
 				<span style="float:left; margin:-80px 0px 0px 100px">[</span>
 				<span style="float:right; margin:-80px 100px 0px 0px">]</span>
