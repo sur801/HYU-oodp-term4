@@ -22,9 +22,26 @@
 
             {% for s in sms %}
             <a href = "#" class = "list-group-item">
-                Number : {{ s[1] }} <br>
-                Content : {{ s[3]}}
+                <p style="font-size : 15px; text-align:left">
+                    {{ s[1] }} <br>
+
+                    {% if s[2] == 0 %}
+                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+                    {% endif %}
+
+                    {% if s[2] == 1 %}
+                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
+                    {% endif %}
+
+                    {{ s[3] }} <br>
+
+                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                    {{ s[0] }}
+                </p>
             </a>
+            
 
             {% endfor %}
         </div>
