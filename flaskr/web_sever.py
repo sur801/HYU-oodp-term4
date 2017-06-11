@@ -3,7 +3,7 @@ from flask import Flask, request, flash, redirect, url_for
 
 #from sql_connect import getPerson, getCall, getMsg
 import sqlite3
-from sql_conn3 import getConnection, getPerson, getCall, getMsg, setPerson, searchPerson
+from sql_conn3 import getConnection, getPerson, getCall, getMsg, setPerson, searchPerson, searchName
 
 app = Flask(__name__)
 app.secret_key = 'secret'
@@ -40,7 +40,11 @@ def addPerson():
 		number = request.form['number']
 		email = request.form['email']
 
-		if not name or not number or not email:
+		# TODO : Duplicate Check : not ready
+		if searchName(number):
+			error = 'Number is already in the Addressbook.'
+
+		elif not name or not number or not email:
 			error = 'Blank not allowed! Please fill in the all fields.'
 
 		else:
