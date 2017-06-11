@@ -1,7 +1,6 @@
 function asking(){
 	if (confirm("실행할래?")== true){    //확인
-
-    document.form.submit();
+		data = {"phonenumber" : "1010"}
 	}else{   //취소
     	return;
 	}

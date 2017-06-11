@@ -1,0 +1,32 @@
+.bs-example{
+	width: 85%;
+	margin:0 auto;
+}
+
+#add_page span{
+	font-size: 250px
+}
+
+#add_page input{
+	padding: 3px;
+}
+
+#add_page span{
+	color: #222222;
+}
+
+#add_page h4{
+	color: #222222;
+	font-weight: bold;
+}
+
+input#save{
+    border-radius: 5px;
+    border-color: #337ab7;
+    width:30%;
+    height: 30px;
+    color: #fff;
+    margin: 20px 0px 0px 10px;
+    background-color: #337ab7;
+  }
+

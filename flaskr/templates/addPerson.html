@@ -1,0 +1,36 @@
+{% extends "history.html" %}
+{% block body %}
+<div class="masthead">
+    <ul class="nav nav-pills pull-right">
+        <li><a href="{{ url_for('main')}}">연락처</a></li>
+        <li id = "call_menu"><a href="{{ url_for('call_hist')}}">통화기록</a></li>
+        <li id="sms_menu"><a href="{{ url_for('sms_hist')}}">문자기록</a></li>
+    </ul>
+    <h1 class="muted" style= "color : #ffffff">Termp 4</h3>
+</div>
+
+<hr>
+
+<div class="jumbotron">
+
+	<div id="add_page">
+ 	   	<span class="glyphicon glyphicon-user" aria-hidden="true"> </span>
+ 	   	<div style="width:80%; margin:0 auto; ">
+			<form method="POST">
+				<br>
+				<span style="float:left; margin:-80px 0px 0px 100px">[</span>
+				<span style="float:right; margin:-80px 100px 0px 0px">]</span>
+				<br><br><br>
+				<h4>이름: <input type="text" name="name" placeholder="이름을 써주세요"></h4> 
+				<h4>번호 : <input type="text" name="number" placeholder="010-4444-4444"></h4>
+				<h4>이메일 : <input type="text" name="email" placeholder="example@naver.com"></h4>
+				<input type="submit" name="submit" value="저장" id="save">
+			</form>
+		
+		<br>
+		<br>
+	</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -15,7 +15,11 @@
     .nav-pills>li>a:focus, .nav-pills>li.active>a:hover {
     color: #fff;
     background-color: #337ab7;
-}
+    }
+
+
+    
+
 
     .floating {
 
@@ -100,6 +104,16 @@
     color : #000000; 
     width : 20px
 
+  }
+
+  input#search {
+    border-radius: 5px;
+    border-color: #337ab7;
+    width:10%;
+    height: 30px;
+    color: #fff;
+    margin-left: 10px;
+    background-color: #337ab7;
   }
 
 

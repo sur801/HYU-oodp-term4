@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
-  <title>home</title>
+  <title>ADDRESS BOOK</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -10,6 +10,7 @@
   <!-- 스타일 -->
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/history.css')}}">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 
 
@@ -22,18 +23,18 @@
     <!--[if lt IE 9]>
       <script src="../assets/js/html5shiv.js"></script>
       <![endif]-->
-
+  <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='img/icon.png')}}" />
     </head>
 
     <body>
 
       <div class="container-narrow">
-
+        {% block body %}
         <div class="masthead">
           <ul class="nav nav-pills pull-right">
             <li><a href="{{ url_for('main')}}">연락처</a></li>
-            <li><a href="{{ url_for('call_hist')}}">통화기록</a></li>
-            <li><a href="{{ url_for('sms_hist')}}">문자기록</a></li>
+            <li id = "call_menu"><a href="{{ url_for('call_hist')}}">통화기록</a></li>
+            <li id="sms_menu"><a href="{{ url_for('sms_hist')}}">문자기록</a></li>
           </ul>
           <h1 class="muted" style= "color : #ffffff">Termp 4</h3>
         </div>
@@ -41,20 +42,20 @@
         <hr>
 
         <div class="jumbotron">
-          {% block body %}
+          
 
-          {% endblock %}
+          
 
           
         </div>
 
-        </div>
-
+        {% endblock %}
         <hr>
 
         <div class="footer">
           <p style="color : #ffffff">&copy; 서유림, 이정훈</p>
         </div>
+
 
       </div> <!-- /container -->
 
