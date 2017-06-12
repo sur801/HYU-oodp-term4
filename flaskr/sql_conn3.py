@@ -89,16 +89,6 @@ def writePerson(name, number, email):
 
     conn.close()
 
-def searchName(num):
-    conn = getConnection()
-    curs = conn.cursor()
-
-    curs.execute("SELECT * FROM ADDRESSBOOK WHERE number=?", (num,))
-    row = curs.fetchall()
-
-    conn.close()
-
-    return row
 
 def getCall():
     conn = getConnection()
@@ -110,9 +100,15 @@ def getCall():
 
     row = curs.fetchall()
 
+    for hist in range(len(row)):
+        if searchName(row[hist][1]) != []:
+            result = searchName(row[hist][1])
+            row[hist] = row[hist][:1] + (result[0][1],) + row[hist][2:]
+
     conn.close()
 
     return row
+
 
 def addCall(number):
     conn = getConnection()
@@ -151,7 +147,6 @@ def setCall():
     return; # maybe TODO
 
 
-
 def getMsg():
     conn = getConnection()
 
@@ -162,9 +157,27 @@ def getMsg():
 
     row = curs.fetchall()
 
+    for hist in range(len(row)):
+        if searchName(row[hist][1]) != []:
+            result = searchName(row[hist][1])
+            row[hist] = row[hist][:1] + (result[0][1],) + row[hist][2:]
+
     conn.close()
 
     return row
+
+
+def searchName(num):
+    conn = getConnection()
+    curs = conn.cursor()
+
+    curs.execute("SELECT * FROM ADDRESSBOOK WHERE number=?", (num,))
+    row = curs.fetchall()
+
+    conn.close()
+
+    return row
+
 
 def changePerson(name, number, email, id):
     conn = getConnection()
