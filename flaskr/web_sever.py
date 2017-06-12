@@ -3,7 +3,7 @@ from flask import Flask, request, flash, redirect, url_for
 
 #from sql_connect import getPerson, getCall, getMsg
 import sqlite3
-from sql_conn3 import getConnection, getPerson, getCall, getMsg, setPerson, searchPerson, searchName, changePerson, deletePerson, searchById
+from sql_conn3 import getConnection, getPerson, getCall, getMsg, setPerson, searchPerson, searchName, changePerson, deletePerson, searchById , addCall, addSms
 
 app = Flask(__name__)
 app.secret_key = 'secret'
@@ -91,13 +91,28 @@ def updatePerson():
 @app.route('/delete/<int:id>', methods = ['DELETE'])
 def deleteUser(id):
 	deletePerson(id)
-	return redirect(url_for('main'))
+	return redirect(url_for('main', person=getPerson()))
 	#return "ok", 200
 @app.route('/edit/<int:id>', methods = ['GET'])
 def editUser(id):
 	print(id)
 	return render_template('editPerson.html', person=searchById(id))
 	#return redirect(url_for('main'))
+
+@app.route('/make_sms/<int:id>', methods = ['GET'])
+def makeSms(id):
+	person = searchById(id)
+	addSms(person[0][2])
+	return render_template('sms_hist.html', sms=getMsg())
+	#return render_template('editPerson.html', person=searchById(id))
+	#return redirect(url_for('main'))
+
+
+@app.route('/make_call/<int:id>', methods = ['GET'])
+def makeCall(id):
+	person = searchById(id)
+	addCall(person[0][2])
+	return render_template('call_hist.html', call=getCall())
 
 """
 @app.route('/add_entry', methods = ['POST', 'GET'])

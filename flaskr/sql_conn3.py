@@ -1,4 +1,5 @@
 import sqlite3
+import datetime
 
 # Use 4 spaces as indent
 
@@ -112,6 +113,30 @@ def getCall():
     conn.close()
 
     return row
+
+def addCall(number):
+    conn = getConnection()
+
+    curs = conn.cursor()
+    now = datetime.datetime.now()
+    time = str(now.year) +'-'+  str(now.month) +'-' + str(now.day) + ' ' + str(now.hour) + ':' + str(now.minute) + ':' + str(now.second)
+    curs.execute("INSERT INTO call VALUES(?, ?, ?, ?)", (time, number, 0, 20))
+    conn.commit()
+
+    conn.close()
+
+
+def addSms(number):
+    conn = getConnection()
+
+    curs = conn.cursor()
+    now = datetime.datetime.now()
+    time = str(now.year) +'-'+  str(now.month) +'-' + str(now.day) + ' ' + str(now.hour) + ':' + str(now.minute) + ':' + str(now.second)
+    text = "hello"
+    curs.execute("INSERT INTO sms VALUES(?, ?, ?, ?)", (time, number, 0 , text))
+    conn.commit()
+
+    conn.close()    
 
 def setCall():
     conn = getConnection()
