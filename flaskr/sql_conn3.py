@@ -50,7 +50,22 @@ def searchPerson(key):
 
     conn.close()
 
-    return row1 + row2 + row3
+
+    if key == "":
+        return row1
+
+    else:
+        return row1 + row2 + row3
+
+def writePerson(name, number, email):
+    conn = getConnection()
+    curs = conn.cursor()
+
+    curs.execute("UPDATE ADDRESSBOOK SET name = ? , number = ?, email = ? WHERE name= ?", (name,number,email,name))
+
+    conn.commit()
+
+    conn.close()
 
 def searchName(num):
     conn = getConnection()
