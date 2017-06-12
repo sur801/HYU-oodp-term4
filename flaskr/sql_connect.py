@@ -1,6 +1,6 @@
 import pymysql
 
-# Use 4 spaces as indent
+# Us 4 spaces as indent
 
 conn = pymysql.connect('addressbook.db')
 

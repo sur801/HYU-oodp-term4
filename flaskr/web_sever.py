@@ -3,7 +3,7 @@ from flask import Flask, request, flash, redirect, url_for
 
 #from sql_connect import getPerson, getCall, getMsg
 import sqlite3
-from sql_conn3 import getConnection, getPerson, getCall, getMsg, setPerson, searchPerson, searchName
+from sql_conn3 import getConnection, getPerson, getCall, getMsg, setPerson, searchPerson, searchName, changePerson, deletePerson
 
 app = Flask(__name__)
 app.secret_key = 'secret'
@@ -30,6 +30,23 @@ def searchResult():
 def sms_hist():
 	return render_template('sms_hist.html', sms=getMsg())
 
+
+
+# @app.route('/delete', methods = ['POST','GET'])
+# def delete():
+# 	value = request.data
+# 	deletePerson(value)
+# 	print (value)
+# 	return redirect(url_for('editPerson'))
+
+@app.route('/delete/<int:id>', methods = ['DELETE'])
+def deleteUser(id):
+	deletePerson(id)
+	return redirect(url_for('main'))
+	#return "ok", 200
+	
+
+
 @app.route('/addPerson', methods = ['POST', 'GET'])
 def addPerson():
 	error = None
@@ -52,6 +69,25 @@ def addPerson():
 			return redirect(url_for('main'))
 
 	return render_template('addPerson.html', error=error)
+
+
+@app.route('/editPerson', methods = ['POST', 'GET'])
+def editPerson():
+	error=None
+
+	if request.method == 'POST':
+		name = request.form['name']
+		number = request.form['number']
+		email = request.form['email']
+
+		if not name or not number or not email:
+			error='Blank not allowed! Please fill in the all fields.'
+
+		else:
+			changePerson(name, number, email)
+			return redirect(url_for('main'))
+
+	return render_template('editPerson.html', error=error)
 
 """
 @app.route('/add_entry', methods = ['POST', 'GET'])
