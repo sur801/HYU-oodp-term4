@@ -1,19 +1,36 @@
 {% extends "history.html" %}
 {% block body %}
-	<div id="add_page">
+<div class="masthead">
+    <ul class="nav nav-pills pull-right">
+        <li><a href="{{ url_for('main')}}">연락처</a></li>
+        <li id = "call_menu"><a href="{{ url_for('call_hist')}}">통화기록</a></li>
+        <li id="sms_menu"><a href="{{ url_for('sms_hist', id=0)}}">문자기록</a></li>
+    </ul>
+    <h1 class="muted" style= "color : #ffffff">Termp 4</h3>
+</div>
+
+<hr>
+<div class="jumbotron">
+
+	{% if error %}
+	<p><h3 style="color:#ffffff">Error :  {{ error }}</h3>
+	<br>
+
+	{% endif %}
+	<div id="send_page">
  	   	
 		<form action="{{ url_for('sms_hist', id = person[0][0]) }}" method="POST">
 			<br>
 			<span style="float:left; margin:-80px 0px 0px 70px">[</span>
 			<span style="float:right; margin:-80px 70px 0px 0px">]</span>
 			<br><br><br>
-			<h3>내 : &emsp;<input type="text" name="content" placeholder="이름을 써주세요"></h3> 
+			<h3>내용 : &emsp;<input type="text" name="content" placeholder="insert text"></h3> 
 			<input type="submit" name="submit" value="전송" id="save">
 		</form>
 		
 		<br>
 		<br>
 	</div>
-
+</div>
 
 {% endblock %}
