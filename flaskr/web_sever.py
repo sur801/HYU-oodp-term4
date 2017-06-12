@@ -26,9 +26,21 @@ def call_hist():
 def searchResult():
 	return render_template('searchResult.html')
 	
-@app.route('/sms_hist')
-def sms_hist():
-	return render_template('sms_hist.html', sms=getMsg())
+@app.route('/sms_hist/<int:id>', methods = ['GET','POST'])
+def sms_hist(id):
+	error = None
+	if request.method == 'POST':
+		text = request.form['content']
+
+		if not text:
+			error = 'Blank not allowed! Please fill in the all fields.'
+			return render_template('Messaging.html', error=error)
+		else:
+			person_sms = searchById(id)
+			addSms(person_sms[0][2],text)
+			return render_template('sms_hist.html', sms=getMsg())
+	else:
+		return render_template('sms_hist.html', sms=getMsg())
 
 
 
@@ -95,17 +107,25 @@ def deleteUser(id):
 	#return "ok", 200
 @app.route('/edit/<int:id>', methods = ['GET'])
 def editUser(id):
+	#
 	print(id)
 	return render_template('editPerson.html', person=searchById(id))
 	#return redirect(url_for('main'))
 
-@app.route('/make_sms/<int:id>', methods = ['GET'])
+@app.route('/make_sms/<int:id>', methods = ['GET','POST'])
 def makeSms(id):
 	person = searchById(id)
-	addSms(person[0][2])
+	text = "hello"
+	addSms(person[0][2],text)
 	return render_template('sms_hist.html', sms=getMsg())
 	#return render_template('editPerson.html', person=searchById(id))
 	#return redirect(url_for('main'))
+
+
+
+@app.route('/Messaging/<int:id>', methods = ['GET','POST'])
+def Messaging(id):
+	return render_template('Messaging.html', person=searchById(id))
 
 
 @app.route('/make_call/<int:id>', methods = ['GET'])
@@ -114,27 +134,6 @@ def makeCall(id):
 	addCall(person[0][2])
 	return render_template('call_hist.html', call=getCall())
 
-"""
-@app.route('/add_entry', methods = ['POST', 'GET'])
-def add_entry():
-	if request.method == 'POST':
-		try:
-			name = request.form['name']
-			number = request.form['number']
-			email = request.form['email']
-			
-			with getConnection() as conn: 
-				curs = conn.cursor()
-				curs.execute("INSERT INTO ADDRESSBOOK VALUES(?, ?, ?, ?)", (None, name, number, email))
 
-				conn.commit()
-
-		except:
-			conn.rollback()
-
-		finally:
-			return render_template('main.html')
-			conn.close()
-"""
 
 app.run(debug=True, host='0.0.0.0')

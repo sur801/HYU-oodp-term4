@@ -126,14 +126,13 @@ def addCall(number):
     conn.close()
 
 
-def addSms(number):
+def addSms(number, text):
     conn = getConnection()
 
     curs = conn.cursor()
     now = datetime.datetime.now()
     time = str(now.year) +'-'+  str(now.month) +'-' + str(now.day) + ' ' + str(now.hour) + ':' + str(now.minute) + ':' + str(now.second)
-    text = "hello"
-    curs.execute("INSERT INTO sms VALUES(?, ?, ?, ?)", (time, number, 0 , text))
+    curs.execute("INSERT INTO sms VALUES(?, ?, ?, ?)", (time, number, 0 , str(text)))
     conn.commit()
 
     conn.close()    
