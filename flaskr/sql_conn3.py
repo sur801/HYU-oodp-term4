@@ -57,6 +57,17 @@ def searchPerson(key):
     else:
         return row1 + row2 + row3
 
+def searchById(id):
+    conn = getConnection()
+    curs = conn.cursor()
+
+    curs.execute("SELECT * FROM ADDRESSBOOK WHERE id=?", (id,))
+    row = curs.fetchall()
+
+    conn.close()
+
+    return row
+
 def deletePerson(key):
     conn = getConnection()
     curs = conn.cursor()
@@ -131,12 +142,12 @@ def getMsg():
 
     return row
 
-def changePerson(name, number, email):
+def changePerson(name, number, email, id):
     conn = getConnection()
     curs = conn.cursor()
 
-    curs.execute("""UPDATE ADDRESSBOOK SET name = ? ,number = ?,email = ? WHERE name= ? """,
-  (name,number,email,name))
+    curs.execute("""UPDATE ADDRESSBOOK SET name = ? ,number = ?,email = ? WHERE id= ? """,
+  (name,number,email,id))
 
     conn.commit()
 

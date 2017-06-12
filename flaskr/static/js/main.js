@@ -18,3 +18,4 @@ function asking(id){
     	return;
 	}
 }
+

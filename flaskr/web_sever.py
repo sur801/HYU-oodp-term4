@@ -3,7 +3,7 @@ from flask import Flask, request, flash, redirect, url_for
 
 #from sql_connect import getPerson, getCall, getMsg
 import sqlite3
-from sql_conn3 import getConnection, getPerson, getCall, getMsg, setPerson, searchPerson, searchName, changePerson, deletePerson
+from sql_conn3 import getConnection, getPerson, getCall, getMsg, setPerson, searchPerson, searchName, changePerson, deletePerson, searchById
 
 app = Flask(__name__)
 app.secret_key = 'secret'
@@ -39,13 +39,6 @@ def sms_hist():
 # 	print (value)
 # 	return redirect(url_for('editPerson'))
 
-@app.route('/delete/<int:id>', methods = ['DELETE'])
-def deleteUser(id):
-	deletePerson(id)
-	return redirect(url_for('main'))
-	#return "ok", 200
-	
-
 
 @app.route('/addPerson', methods = ['POST', 'GET'])
 def addPerson():
@@ -70,24 +63,41 @@ def addPerson():
 
 	return render_template('addPerson.html', error=error)
 
-
-@app.route('/editPerson', methods = ['POST', 'GET'])
-def editPerson():
-	error=None
+@app.route('/update', methods = ['POST', 'GET'])
+def updatePerson():
+	error = None
 
 	if request.method == 'POST':
+
 		name = request.form['name']
 		number = request.form['number']
 		email = request.form['email']
+		id = request.form['id']
 
-		if not name or not number or not email:
-			error='Blank not allowed! Please fill in the all fields.'
+		# TODO : Duplicate Check : not ready
+		if searchName(number):
+			error = 'Number is already in the Addressbook.'
+
+		elif not name or not number or not email:
+			error = 'Blank not allowed! Please fill in the all fields.'
 
 		else:
-			changePerson(name, number, email)
+			changePerson(name, number, email,id)
 			return redirect(url_for('main'))
 
 	return render_template('editPerson.html', error=error)
+
+
+@app.route('/delete/<int:id>', methods = ['DELETE'])
+def deleteUser(id):
+	deletePerson(id)
+	return redirect(url_for('main'))
+	#return "ok", 200
+@app.route('/edit/<int:id>', methods = ['GET'])
+def editUser(id):
+	print(id)
+	return render_template('editPerson.html', person=searchById(id))
+	#return redirect(url_for('main'))
 
 """
 @app.route('/add_entry', methods = ['POST', 'GET'])

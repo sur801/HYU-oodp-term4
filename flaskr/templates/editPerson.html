@@ -22,14 +22,15 @@
 	<div id="add_page">
  	   	<span class="glyphicon glyphicon-user" aria-hidden="true" style="margin: 0 auto;"> </span>
  	   	
-		<form action="{{ url_for('editPerson') }}" method="POST">
+		<form action="{{ url_for('updatePerson', id = person[0][0]) }}" method="POST">
 			<br>
 			<span style="float:left; margin:-80px 0px 0px 70px">[</span>
 			<span style="float:right; margin:-80px 70px 0px 0px">]</span>
 			<br><br><br>
-			<h4>이름 : &emsp;<input type="text" name="name" placeholder="이름을 써주세요"></h4> 
-			<h4>번호 : &emsp;<input type="text" name="number" placeholder="010-4444-4444"></h4>
-			<h4>이메일 : <input type="text" name="email" placeholder="example@naver.com"></h4>
+			<h4>이름 : &emsp;<input type="text" name="name" value="{{ person[0][1] }}"></h4> 
+			<h4>번호 : &emsp;<input type="text" name="number" value="{{ person[0][2] }}"></h4>
+			<h4>이메일 : <input type="text" name="email" value="{{ person[0][3] }}"></h4>
+			<input type="hidden" name="id" value="{{ person[0][0] }}">
 			<input type="submit" name="submit" value="저장" id="save">
 		</form>
 		
