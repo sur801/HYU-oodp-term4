@@ -1,0 +1,19 @@
+{% extends "history.html" %}
+{% block body %}
+	<div id="add_page">
+ 	   	
+		<form action="{{ url_for('sms_hist', id = person[0][0]) }}" method="POST">
+			<br>
+			<span style="float:left; margin:-80px 0px 0px 70px">[</span>
+			<span style="float:right; margin:-80px 70px 0px 0px">]</span>
+			<br><br><br>
+			<h3>내 : &emsp;<input type="text" name="content" placeholder="이름을 써주세요"></h3> 
+			<input type="submit" name="submit" value="전송" id="save">
+		</form>
+		
+		<br>
+		<br>
+	</div>
+
+
+{% endblock %}
