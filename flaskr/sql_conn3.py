@@ -47,22 +47,7 @@ def searchPerson(key):
     conn.close()
 
     return row1
-"""
-    curs.execute("SELECT * FROM ADDRESSBOOK WHERE number LIKE ?", ('%{}%'.format(key),))
-    row2 = curs.fetchall()
 
-    curs.execute("SELECT * FROM ADDRESSBOOK WHERE email LIKE ?", ('%{}%'.format(key),))
-    row3 = curs.fetchall()
-
-    conn.close()
-
-
-    if key == "":
-        return row1
-
-    else:
-        return row1 + row2 + row3
-"""
 
 def searchById(id):
     conn = getConnection()
@@ -79,7 +64,7 @@ def deletePerson(key):
     conn = getConnection()
     curs = conn.cursor()
 
-    curs.execute('''DELETE FROM ADDRESSBOOK WHERE id = ?''', (key,))
+    curs.execute("DELETE FROM ADDRESSBOOK WHERE id = ?", (key,))
 
     conn.commit()
 
@@ -89,7 +74,7 @@ def writePerson(name, number, email):
     conn = getConnection()
     curs = conn.cursor()
 
-    curs.execute("UPDATE ADDRESSBOOK SET name = ? , number = ?, email = ? WHERE name= ?", (name,number,email,name))
+    curs.execute("UPDATE ADDRESSBOOK SET name = ? , number = ?, email = ? WHERE name = ?", (name,number,email,name))
 
     conn.commit()
 
@@ -101,13 +86,13 @@ def getCall(status):
 
     curs = conn.cursor()
     if status==3:
-        sql = "select * from call order by time desc"
+        sql = "SELECT * FROM CALL ORDER BY TIME DESC"
     elif status==0:
-        sql = "select * from call where status = 0 order by time desc"
+        sql = "SELECT * FROM CALL WHERE STATUS = 0 ORDER BY TIME DESC"
     elif status==1:
-        sql = "select * from call where status = 1 order by time desc"
+        sql = "SELECT * FROM CALL WHERE STATUS = 1 ORDER BY TIME DESC"
     elif status==2:
-        sql = "select * from call where status = 2 order by time desc"
+        sql = "SELECT * FROM CALL WHERE STATUS = 2 ORDER BY TIME DESC"
     
     curs.execute(sql)
 
@@ -156,11 +141,11 @@ def getMsg(status):
     curs = conn.cursor()
 
     if status==3:
-        sql = "select * from sms order by time desc"
+        sql = "SELECT * FROM SMS ORDER BY TIME DESC"
     elif status==0:
-        sql = "select * from sms where status = 0 order by time desc"
+        sql = "SELECT * FROM SMS WHERE STATUS = 0 ORDER BY TIME DESC"
     elif status==1:
-        sql = "select * from sms where status = 1 order by time desc"
+        sql = "SELECT * FROM SMS WHERE STATUS = 1 ORDER BY TIME DESC"
 
     curs.execute(sql)
 
@@ -193,7 +178,7 @@ def changePerson(name, number, email, id):
     curs = conn.cursor()
 
     curs.execute("UPDATE ADDRESSBOOK SET name = ? ,number = ?,email = ? WHERE id= ? ",
-  (name,number,email,id))
+      (name,number,email,id))
 
     conn.commit()
 
