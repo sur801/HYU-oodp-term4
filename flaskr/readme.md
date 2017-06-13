@@ -2,6 +2,8 @@
 
 Address Book by Web
 
+**web_server.py를 실행하여 서버 가동**
+
 *© 서유림, 이정훈*
 
 
