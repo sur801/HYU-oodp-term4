@@ -3,8 +3,8 @@
 <div class="masthead">
     <ul class="nav nav-pills pull-right">
         <li><a href="{{ url_for('main')}}">연락처</a></li>
-        <li id = "call_menu"><a href="{{ url_for('call_hist')}}">통화기록</a></li>
-        <li id="sms_menu"><a href="{{ url_for('sms_hist', id=0)}}">문자기록</a></li>
+        <li id = "call_menu"><a href="{{ url_for('call_hist', status =3 )}}">통화기록</a></li>
+        <li id="sms_menu"><a href="{{ url_for('sms_hist', id=0, status=3 )}}">문자기록</a></li>
     </ul>
     <h1 class="muted" style= "color : #ffffff">Termp 4</h3>
 </div>

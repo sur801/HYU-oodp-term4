@@ -40,9 +40,14 @@ def searchPerson(key):
     conn = getConnection()
     curs = conn.cursor()
 
-    curs.execute("SELECT * FROM ADDRESSBOOK WHERE name LIKE ?", ('%{}%'.format(key),))
+    curs.execute("SELECT * FROM ADDRESSBOOK WHERE (name LIKE ?) OR (number LIKE ?) OR (email LIKE ?) ORDER BY name ASC",
+        ('%{}%'.format(key), '%{}%'.format(key), '%{}%'.format(key)))
     row1 = curs.fetchall()
 
+    conn.close()
+
+    return row1
+"""
     curs.execute("SELECT * FROM ADDRESSBOOK WHERE number LIKE ?", ('%{}%'.format(key),))
     row2 = curs.fetchall()
 
@@ -57,6 +62,7 @@ def searchPerson(key):
 
     else:
         return row1 + row2 + row3
+"""
 
 def searchById(id):
     conn = getConnection()
@@ -90,12 +96,19 @@ def writePerson(name, number, email):
     conn.close()
 
 
-def getCall():
+def getCall(status):
     conn = getConnection()
 
     curs = conn.cursor()
-
-    sql = "select * from call"
+    if status==3:
+        sql = "select * from call order by time desc"
+    elif status==0:
+        sql = "select * from call where status = 0 order by time desc"
+    elif status==1:
+        sql = "select * from call where status = 1 order by time desc"
+    elif status==2:
+        sql = "select * from call where status = 2 order by time desc"
+    
     curs.execute(sql)
 
     row = curs.fetchall()
@@ -133,26 +146,22 @@ def addSms(number, text):
 
     conn.close()    
 
-def setCall():
-    conn = getConnection()
-
-    cur = conn.cursor()
-
-    # TODO : query
-
-    conn.commit()
-
-    conn.close()
-
-    return; # maybe TODO
 
 
-def getMsg():
+def getMsg(status):
     conn = getConnection()
 
     curs = conn.cursor()
 
-    sql = "select * from sms"
+    curs = conn.cursor()
+
+    if status==3:
+        sql = "select * from sms order by time desc"
+    elif status==0:
+        sql = "select * from sms where status = 0 order by time desc"
+    elif status==1:
+        sql = "select * from sms where status = 1 order by time desc"
+
     curs.execute(sql)
 
     row = curs.fetchall()
@@ -183,7 +192,7 @@ def changePerson(name, number, email, id):
     conn = getConnection()
     curs = conn.cursor()
 
-    curs.execute("""UPDATE ADDRESSBOOK SET name = ? ,number = ?,email = ? WHERE id= ? """,
+    curs.execute("UPDATE ADDRESSBOOK SET name = ? ,number = ?,email = ? WHERE id= ? ",
   (name,number,email,id))
 
     conn.commit()

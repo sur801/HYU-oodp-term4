@@ -18,16 +18,16 @@ def main(name=None):
 	return render_template('main.html', name=name, person=getPerson())
 
 
-@app.route('/call_hist')
-def call_hist():
-	return render_template('call_hist.html', call=getCall())
+@app.route('/call_hist/<int:status>', methods=['GET','POST'])
+def call_hist(status):
+	return render_template('call_hist.html', call=getCall(status))
 
 @app.route('/searchResult')
 def searchResult():
 	return render_template('searchResult.html')
 	
-@app.route('/sms_hist/<int:id>', methods = ['GET','POST'])
-def sms_hist(id):
+@app.route('/sms_hist/<int:id>/<int:status>', methods = ['GET','POST'])
+def sms_hist(id, status):
 	error = None
 	if request.method == 'POST':
 		text = request.form['content']
@@ -37,10 +37,10 @@ def sms_hist(id):
 			return render_template('Messaging.html', error=error)
 		else:
 			person_sms = searchById(id)
-			addSms(person_sms[0][2],text)
-			return render_template('sms_hist.html', sms=getMsg())
+			addSms(person_sms[0][2], text)
+			return render_template('sms_hist.html', sms=getMsg(0))
 	else:
-		return render_template('sms_hist.html', sms=getMsg())
+		return render_template('sms_hist.html', sms=getMsg(status))
 
 
 
@@ -87,24 +87,25 @@ def updatePerson():
 		id = request.form['id']
 
 		# TODO : Duplicate Check : not ready
-		if searchName(number):
-			error = 'Number is already in the Addressbook.'
+		#if searchName(number):
+		#	error = 'Number is already in the Addressbook.'
 
-		elif not name or not number or not email:
+		if not name or not number or not email:
 			error = 'Blank not allowed! Please fill in the all fields.'
 
 		else:
 			changePerson(name, number, email,id)
 			return redirect(url_for('main'))
 
-	return render_template('editPerson.html', error=error)
+	return render_template('editPerson.html', error=error, person=getPerson())
 
 
 @app.route('/delete/<int:id>', methods = ['DELETE'])
 def deleteUser(id):
 	deletePerson(id)
-	return redirect(url_for('main', person=getPerson()))
+	return render_template( 'main.html', person=getPerson())
 	#return "ok", 200
+
 @app.route('/edit/<int:id>', methods = ['GET'])
 def editUser(id):
 	#

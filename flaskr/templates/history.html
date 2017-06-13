@@ -12,9 +12,10 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/history.css')}}">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap2-toggle.min.css" rel="stylesheet">
 
   <!-- javascript -->
+  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap2-toggle.min.js"></script>
   <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         
@@ -33,7 +34,7 @@
         <div class="masthead">
           <ul class="nav nav-pills pull-right">
             <li><a href="{{ url_for('main')}}">연락처</a></li>
-            <li id = "call_menu"><a href="{{ url_for('call_hist')}}">통화기록</a></li>
+            <li id = "call_menu"><a href="{{ url_for('call_hist', status=3 )}}">통화기록</a></li>
             <li id="sms_menu"><a href="{{ url_for('sms_hist')}}">문자기록</a></li>
           </ul>
           <h1 class="muted" style= "color : #ffffff">Termp 4</h3>
@@ -41,8 +42,7 @@
 
         <hr>
 
-        <div class="jumbotron">
-          
+        
 
           
 
